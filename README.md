@@ -3,6 +3,6 @@ docs
 
 documentation for webpack and enhanced-require
 
-You'll find it in the wiki:
+# [documentation](http://webpack.github.io/docs/home.html)
 
-# [documentation](https://github.com/webpack/docs/wiki)
+The page is generated from the content in this [wiki](https://github.com/webpack/docs/wiki).
