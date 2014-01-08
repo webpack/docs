@@ -66,7 +66,7 @@ module.exports = function(grunt) {
 	});
 	grunt.registerTask("development", ["webpack:development", "staticwiki:development", "connect", "watch"]);
 	grunt.registerTask("production", ["webpack:production", "staticwiki:production"]);
-	grunt.registerTask("deploy", ["webpack:production", "staticwiki:production", "gh-pages"]);
+	grunt.registerTask("deploy", ["clean", "webpack:production", "staticwiki:production", "gh-pages"]);
 	grunt.registerTask("dev", ["development"]);
 	grunt.registerTask("default", ["production"]);
 };
