@@ -74,8 +74,8 @@ module.exports = function(grunt) {
 				var file = dest.replace(/\[title\]/gi, link);
 				grunt.log.ok("Writing " + file + "...");
 				var html = layout
-					.replace(/\{\{\s*wikititle\s*\}\}/gi, linkToTitle(link))
-					.replace(/\{\{\s*wikiurl\s*\}\}/gi, link)
+					.replace(/\{\{\s*title\s*\}\}/gi, linkToTitle(link))
+					.replace(/\{\{\s*url\s*\}\}/gi, link)
 					.replace(/\{\{\s*wiki(?:\s+([a-z0-9 \-_]+))?\s*\}\}/gi, function(fragment) {
 						var match = /\{\{\s*wiki(?:\s+([a-z0-9 \-_]+))?\s*\}\}/gi.exec(fragment);
 						var wikiPath = titleToLink(match[1]);
