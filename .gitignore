@@ -1,2 +1,5 @@
 /node_modules
 /.grunt
+/*.html
+/js
+/font
