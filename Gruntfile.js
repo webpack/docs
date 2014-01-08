@@ -20,14 +20,14 @@ module.exports = function(grunt) {
 		staticwiki: {
 			development: {
 				files: {
-					"index.html": "layouts/landing.html",
-					"[title].html": "layouts/doc.html"
+					"dist/index.html": "layouts/landing.html",
+					"dist/[title].html": "layouts/doc.html"
 				},
 			},
 			production: {
 				files: {
-					"index.html": "layouts/landing.html",
-					"[title].html": "layouts/doc.html"
+					"dist/index.html": "layouts/landing.html",
+					"dist/[title].html": "layouts/doc.html"
 				},
 				options: {
 					minify: true
@@ -37,6 +37,7 @@ module.exports = function(grunt) {
 		connect: {
 			development: {
 				options: {
+					base: "dist",
 					port: 8088
 				}
 			}
@@ -45,13 +46,13 @@ module.exports = function(grunt) {
 			options: {
 				message: "Publish"
 			},
-			src: ["js/**", "*.html", "font/**"]
+			src: ["dist/**"]
 		},
-		clean: ["js/**", , "*.html", "font/**"],
+		clean: ["dist"],
 		watch: {
 			lr: {
 				options: { livereload: true },
-				files: ["js/**/*", "*.html"],
+				files: ["dist"],
 			},
 			app: {
 				files: ["app/**/*.{js,less,css,styl}", "lib/**/*.js"],
