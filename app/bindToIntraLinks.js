@@ -2,17 +2,38 @@ var linkToTitle = require("../lib/linkToTitle");
 
 var LRU = require("lru-cache");
 
+var INTRA_LINK = /^([a-z0-9\-\.]+)\.html$/i;
+
 function bindIntraLinks() {
 	document.body.addEventListener("click", function(event) {
-		if(event.target.tagName === "A" && /^([a-z0-9\-\.]+)\.html$/i.test(event.target.getAttribute("href"))) {
+		if(event.target.tagName === "A" && INTRA_LINK.test(event.target.getAttribute("href"))) {
 			var href = event.target.getAttribute("href");
-			var wiki = /^([a-z0-9\-\.]+)\.html$/i.exec(href)[1];
+			INTRA_LINK.lastIndex = 0;
+			var wiki = INTRA_LINK.exec(href)[1];
 			document.title = linkToTitle(wiki);
+			currentPage = wiki;
 			history.pushState(null, null, href);
 			loadPage(wiki, false);
 			event.preventDefault();
 		}
 	}, false);
+}
+
+function highlightIntraLinks() {
+	if(document.querySelectorAll) {
+		var elements = document.querySelectorAll('a[href$=".html"]');
+		for(var i = 0; i < elements.length; i++) {
+			var element = elements[i];
+			var href = element.getAttribute("href");
+			if(element.classList && INTRA_LINK.test(href)) {
+				INTRA_LINK.lastIndex = 0;
+				var wiki = INTRA_LINK.exec(href)[1];
+				if((currentPage === wiki) ^ (element.classList.contains("active"))) {
+					element.classList.toggle("active");
+				}
+			}
+		}
+	}
 }
 
 var contentElement = document.getElementById("wiki");
@@ -62,6 +83,7 @@ function loadPage(wiki, initial) {
 		titleElement.innerHTML = linkToTitle(wiki);
 		contentElement.innerHTML = cacheEntry;
 		if(!initial) reportAnalytics();
+		highlightIntraLinks();
 		return;
 	}
 
@@ -91,6 +113,7 @@ function loadPage(wiki, initial) {
 				window.scrollTo(0, 0);
 				if(!initial) reportAnalytics();
 				if(initial) bindIntraLinks();
+				highlightIntraLinks();
 			}
 		}
 	};
