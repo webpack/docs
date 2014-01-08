@@ -44,9 +44,10 @@ module.exports = function(grunt) {
 		},
 		"gh-pages": {
 			options: {
-				message: "Publish"
+				message: "Publish",
+				base: "dist"
 			},
-			src: ["dist/**"]
+			src: ["**"]
 		},
 		clean: ["dist"],
 		watch: {
