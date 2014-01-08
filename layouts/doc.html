@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>{{wikititle}}</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+
+					{{include logo}}
+
+					<div id="sidebar" class="sidebar">
+						{{wiki sidebar}}
+					</div>
+				</div>
+
+				<div class="col-md-9">
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pull-right">
+								<a href="https://github.com/webpack/docs/wiki/{{wikiurl}}/_edit" id="wikieditlink">Edit</a>
+							</div>
+							<div class="page-header">
+								<h1 id="wikititle">{{wikititle}}</h1>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div id="wiki" class="col-md-12">
+							{{wiki}}
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script src="js/doc.js" charset="utf-8"></script>
+	</body>
+</html>

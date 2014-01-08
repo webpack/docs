@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Webpack</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+
+					{{include logo}}
+
+					<div id="sidebar" class="sidebar">
+						<div class="todo">TODO: clean up sidebar</div>
+						{{wiki sidebar}}
+					</div>
+				</div>
+
+				<div class="col-md-9">
+
+					{{include header}}
+
+					<div class="row">
+						<div class="col-md-12 todo">
+							TODO: simple example that bundles from a basic app, node_modules, bower_components, web_modules, etc
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script src="js/landing.js" charset="utf-8"></script>
+	</body>
+</html>
