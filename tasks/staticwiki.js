@@ -104,7 +104,7 @@ module.exports = function(grunt) {
 	}
 
 	function extractIntraLinksFromMarkdown(md) {
-		return extractRegExpFromText(md, /\[\[([a-z0-9 \-_\.]+)\]\]/gi, titleToLink);
+		return extractRegExpFromText(md, /\[\[(?:[^\]\|]+\|\s*)?([a-z0-9 \-_\.]+)\]\]/gi, titleToLink);
 	}
 
 	function extractRegExpFromText(text, regExp, postprocessFn) {

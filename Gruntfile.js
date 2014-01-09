@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 		"webpack-dev-server": {
 			development: {
 				contentBase: "dist",
-				port: 8088,
+				port: 8088, // http://localhost:8088/webpack-dev-server/webpack-getting-started.html
 				webpack: grunt.util._.merge(require("./webpack.config.js"), {
 					devtool: "eval"
 				})
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
 			},
 		},
 	});
-	grunt.registerTask("development", ["staticwiki:development", "webpack-dev-server:development", "watch"]);
+	grunt.registerTask("development", ["webpack-dev-server:development", "staticwiki:development", "watch"]);
 	grunt.registerTask("production", ["webpack:production", "staticwiki:production"]);
 	grunt.registerTask("deploy", ["clean", "webpack:production", "staticwiki:production", "gh-pages"]);
 	grunt.registerTask("dev", ["development"]);

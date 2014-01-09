@@ -50,6 +50,7 @@ window.addEventListener("popstate", function() {
 	loadCurrentPage(false);
 });
 
+highlightIntraLinks();
 loadCurrentPage(true);
 
 function loadCurrentPage(initial) {
@@ -87,7 +88,7 @@ function loadPage(wiki, initial) {
 		return;
 	}
 
-	if(document.body.classList) document.body.classList.add("loading");
+	if(!initial && document.body.classList) document.body.classList.add("loading");
 
 	var request = new XMLHttpRequest();
 	request.open("GET", "http://github-wiki.herokuapp.com/webpack/docs/" + wiki, true);
