@@ -9,14 +9,14 @@ module.exports = Result;</code></pre><p>Here we make use of the special object <
 module.exports = MySalute;</code></pre><pre><code><span class=comment>//world.js</span>
 <span class=keyword>var</span> MySalute = require(<span class=string>"./salute"</span>);
 <span class=keyword>var</span> Result = MySalute + <span class=string>"world!"</span>;
-module.exports = Result;</code></pre><p>Note that we didn’t use the full filename <code>salute.js</code> but <code>.<span class=regexp>/salute</span></code> when calling <code>require</code>, so you must omit the extension of your scripts. <code>.<span class=regexp>/</span></code> means that the <code>saltue</code> module is in the same directory as the <code>world</code> module.</p><h3><a class=anchor href=#functions-example id=functions-example><i class="glyphicon glyphicon-link"></i></a>Functions example</h3><pre><code><span class=comment>// moduleA.js</span>
+module.exports = Result;</code></pre><p>Note that we didn’t use the full filename <code>salute.js</code> but <code>.<span class=regexp>/salute</span></code> when calling <code>require</code>, so you must omit the extension of your scripts. <code>.<span class=regexp>/</span></code> means that the <code>salute</code> module is in the same directory as the <code>world</code> module.</p><h3><a class=anchor href=#functions-example id=functions-example><i class="glyphicon glyphicon-link"></i></a>Functions example</h3><pre><code><span class=comment>// moduleA.js</span>
 module.exports = <span class=function><span class=keyword>function</span><span class=params>( value )</span>{</span>
     <span class=keyword>return</span> value*<span class=number>2</span>;
 }</code></pre><pre><code><span class=comment>// moduleB.js</span>
 <span class=keyword>var</span> multiplyBy2 = require(<span class=string>'moduleA'</span>);
 <span class=keyword>var</span> result = multiplyBy2( <span class=number>4</span> );</code></pre><h2><a class=anchor href=#advanced id=advanced><i class="glyphicon glyphicon-link"></i></a>Advanced</h2><pre><code><span class=comment>// require a module</span>
 <span class=keyword>var</span> dependency = require(<span class=string>"./dependency"</span>);
-<span class=comment>// each module is only excuted once and the same</span>
+<span class=comment>// each module is only executed once and the same</span>
 <span class=comment>//  exports are returned</span>
 <span class=comment>// require("./dependency") === require("./dependency")</span>
 
@@ -30,7 +30,7 @@ module.exports = <span class=function><span class=keyword>function</span> <span 
 <span class=comment>// the value of module.exports is returned by the require</span>
 <span class=comment>//  function when require this module.</span>
 
-<span class=comment>//// Advanded stuff ////</span>
+<span class=comment>//// Advanced stuff ////</span>
 
 <span class=comment>// unload module</span>
 <span class=keyword>var</span> id = require.resolve(<span class=string>"./dependency"</span>);
