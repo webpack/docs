@@ -34,12 +34,13 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		connect: {
+		"webpack-dev-server": {
 			development: {
-				options: {
-					base: "dist",
-					port: 8088
-				}
+				contentBase: "dist",
+				port: 8088,
+				webpack: grunt.util._.merge(require("./webpack.config.js"), {
+					devtool: "eval"
+				})
 			}
 		},
 		"gh-pages": {
@@ -55,17 +56,13 @@ module.exports = function(grunt) {
 				options: { livereload: true },
 				files: ["dist"],
 			},
-			app: {
-				files: ["app/**/*.{js,less,css,styl}", "lib/**/*.js"],
-				tasks: ["webpack:development"],
-			},
 			html: {
 				files: ["layouts/**/*.html", "lib/**/*.js"],
 				tasks: ["staticwiki:development"],
 			},
 		},
 	});
-	grunt.registerTask("development", ["webpack:development", "staticwiki:development", "connect", "watch"]);
+	grunt.registerTask("development", ["staticwiki:development", "webpack-dev-server:development", "watch"]);
 	grunt.registerTask("production", ["webpack:production", "staticwiki:production"]);
 	grunt.registerTask("deploy", ["clean", "webpack:production", "staticwiki:production", "gh-pages"]);
 	grunt.registerTask("dev", ["development"]);

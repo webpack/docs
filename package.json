@@ -7,9 +7,10 @@
   },
   "dependencies": {
     "grunt": "~0.4.2",
-    "grunt-webpack": "1.x",
+    "grunt-webpack": "~1.0.2",
     "html-minifier": "~0.5.4",
     "webpack": "1.x",
+    "webpack-dev-server": "~1.2.0",
     "marked": "~0.3.0",
     "lru-cache": "~2.5.0",
     "async": "~0.2.9",
