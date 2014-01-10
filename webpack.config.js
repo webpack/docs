@@ -2,7 +2,8 @@ module.exports = {
 	cache: true,
 	entry: {
 		doc: "./app/doc.js",
-		landing: "./app/landing.js"
+		landing: "./app/landing.js",
+		tutorial: "./app/landing.js"
 	},
 	output: {
 		path: __dirname + "/dist",
@@ -19,5 +20,5 @@ module.exports = {
 			{ test: /\.eot$/,    loader: "file-loader?prefix=font/" },
 			{ test: /\.svg$/,    loader: "file-loader?prefix=font/" },
 		]
-	},
+	}
 };

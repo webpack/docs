@@ -12,6 +12,8 @@ module.exports = {
 		code: true,
 		grid: true,
 		tables: true,
+		pager: true,
+		panels: true,
 		
 		glyphicons: true,
 		
