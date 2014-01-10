@@ -7,11 +7,13 @@ module.exports = function(grunt) {
 			options: require("./webpack.config.js"),
 			development: {
 				devtool: "eval",
-				plugins: [
-				]
 			},
 			production: {
 				plugins: [
+					new webpack.DefinePlugin({
+						GA_TRACKING_CODE: JSON.stringify('UA-46921629-1'),
+						GA_TRACKING_CONFIG: JSON.stringify('webpack.github.io')
+					}),
 					new webpack.optimize.OccurenceOrderPlugin(),
 					new webpack.optimize.UglifyJsPlugin()
 				]
