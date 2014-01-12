@@ -3,7 +3,7 @@ module.exports = {
 	entry: {
 		doc: "./app/doc.js",
 		landing: "./app/landing.js",
-		tutorial: "./app/landing.js"
+		tutorial: "./app/tutorial.js"
 	},
 	output: {
 		path: __dirname + "/dist",

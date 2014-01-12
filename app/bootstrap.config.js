@@ -14,6 +14,7 @@ module.exports = {
 		tables: true,
 		pager: true,
 		panels: true,
+		alerts: true,
 		
 		glyphicons: true,
 		
