@@ -114,11 +114,9 @@ module.exports = function(grunt) {
 				command(destPath, function(err, output) {
 					grunt.log.writeln("Generating file for " + url + "...");
 					var content = step.content.replace(/\<p\>\$\$\$\s+([^\<]+)\<\/p\>/g, function(match, cmd) {
-						console.log(cmd);
 						if(cmd === "files") {
 							return Object.keys(fileUpdates).map(function(filename) {
 								var data = fileUpdates[filename];
-								console.log(data);
 								switch(data.type) {
 								case "added":
 									return '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">' +
