@@ -122,17 +122,17 @@ module.exports = function(grunt) {
 								switch(data.type) {
 								case "added":
 									return '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">' +
-										"added " + filename +
+										"add <code>" + filename + "</code>" +
 										'</h3></div><div class="panel-body">' + 
 										renderMarkdown("```\n" + data.content.trim() + "\n```") +
 										'</div></div>';
 								case "removed": 
 									return '<div class="alert alert-danger">' +
-										"removed " + filename +
+										"remove <code>" + filename + "</code>" +
 										'</div>'
 								case "updated":
 									return '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">' +
-										"updated " + filename +
+										"update <code>" + filename + "</code>" +
 										'</h3></div><div class="panel-body">' + 
 										diffFiles(data.oldContent, data.newContent) +
 										'</div></div>';
