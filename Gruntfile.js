@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 		config.context = p;
 		webpack(config, function(err, stats) {
 			if(err) throw err;
+			grunt.log.writeln("webpack executed from " + path.basename(p));
 			callback(null, "<pre><code>" + stats.toString({
 				hash: false,
 				context: p
@@ -90,19 +91,24 @@ module.exports = function(grunt) {
 				options: { livereload: true },
 				files: ["dist"],
 			},
-			html1: {
+			wiki: {
 				files: ["layouts/**/*.html", "lib/**/*.js"],
 				tasks: ["staticwiki:development"],
 			},
-			html2: {
-				files: ["layouts/**/*.html", "tutorial/**/*"],
+			tutorial: {
+				files: ["layouts/**/*.html", "tutorials/**/*"],
 				tasks: ["statictutorial:development"],
 			},
 		},
 	});
 	grunt.registerTask("development", ["webpack-dev-server:development", "staticwiki:development", "statictutorial:development", "watch"]);
-	grunt.registerTask("production", ["webpack:production", "staticwiki:production"]);
+	grunt.registerTask("production", ["webpack:production", "staticwiki:production", "statictutorial:production"]);
 	grunt.registerTask("deploy", ["clean", "webpack:production", "staticwiki:production", "gh-pages"]);
+	grunt.registerTask("tutorial-development", ["webpack-dev-server:development", "statictutorial:development", "watch:tutorial"]);
+	grunt.registerTask("wiki-development", ["webpack-dev-server:development", "staticwiki:development", "watch:wiki"]);
+
 	grunt.registerTask("dev", ["development"]);
+	grunt.registerTask("tutdev", ["tutorial-development"]);
+	grunt.registerTask("wikidev", ["wiki-development"]);
 	grunt.registerTask("default", ["production"]);
 };

@@ -115,7 +115,15 @@ module.exports = function(grunt) {
 					grunt.log.writeln("Generating file for " + url + "...");
 					var content = step.content.replace(/\<p\>\$\$\$\s+([^\<]+)\<\/p\>/g, function(match, cmd) {
 						if(cmd === "files") {
-							return Object.keys(fileUpdates).map(function(filename) {
+							return Object.keys(fileUpdates).sort(function(a, b) {
+								var aa = fileUpdates[a];
+								var bb = fileUpdates[b];
+								if(aa.type < bb.type) return -1;
+								if(aa.type > bb.type) return 1;
+								if(a < b) return -1;
+								if(a > b) return 1;
+								return 0;
+							}).map(function(filename) {
 								var data = fileUpdates[filename];
 								switch(data.type) {
 								case "added":
@@ -140,7 +148,8 @@ module.exports = function(grunt) {
 							return output;
 						} else {
 							// Display a file in a iframe
-							grunt.file.copy(path.join(fullPath, cmd), path.join(dest, url, cmd));
+							if(!Object.prototype.hasOwnProperty.call(currentFiles, cmd))
+								grunt.file.copy(path.join(fullPath, cmd), path.join(dest, url, cmd));
 							return "<iframe class=\"tutorial-iframe\" seamless src=\"" + url + "/" + cmd + "\"></iframe>";
 						}
 					});
