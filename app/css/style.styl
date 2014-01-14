@@ -30,7 +30,6 @@ body
   width: 100%
   height: 220px
   position: relative
-  perspective: 1000px
   margin-left: -20px
   .name
     font-size: 2em
@@ -46,20 +45,16 @@ body
     width: 150px
 
 .cube
-  cube(100px, rgba(197, 219, 251, 0.5))
+  cube(100px, rgba(126,169,232,0.5))
   spin()
   margin: -50px 0 0 -50px
   top: 50%
   left: 50%
-  li
-    border: 2px solid black
 
 .cube-inner
-  cube(50px, rgba(104, 134, 217, 0.5))
+  cube(50px, rgba(16,58,177,0.5))
   margin: -25px 0 0 -25px
   spin(fastspin)
-  li
-    border: 1px solid black
 
 .loading
   transition: opacity 1s linear, background 1s linear
