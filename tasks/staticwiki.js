@@ -122,8 +122,6 @@ module.exports = function(grunt) {
 	}
 
 	function downloadWikiContent(wikiPath, callback) {
-		grunt.log.writeln("[GET] wiki page " + wikiPath);
-		// http.get("http://github-wiki.cloudno.de/webpack/docs/" + wikiPath, function(res) {
 		https.get("https://raw.github.com/wiki/webpack/docs/" + wikiPath + ".md", function(res) {
 			grunt.log.writeln("[" + res.statusCode + "] wiki page " + wikiPath);
 			if(res.statusCode !== 200) {
