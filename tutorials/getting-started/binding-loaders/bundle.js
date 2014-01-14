@@ -76,7 +76,7 @@
 /***/ function(module, exports, require) {
 
 	module.exports =
-		"body {\n\tbackground: yellow;\n}";
+		"body {\r\n\tbackground: yellow;\r\n}";
 
 /***/ },
 /* 4 */
