@@ -12,6 +12,13 @@ module.exports = function(grunt) {
 		webpack(config, function(err, stats) {
 			if(err) throw err;
 			grunt.log.writeln("webpack executed from " + path.basename(p));
+			grunt.log.writeln(stats.toString({
+				chunks: false,
+				modules: true,
+				hash: false,
+				assets: true,
+				colors: true
+			}));
 			callback(null, "<pre><code>" + stats.toString({
 				hash: false,
 				context: p
@@ -19,7 +26,8 @@ module.exports = function(grunt) {
 		});
 	}
 	var tutorials = {
-		"dist/tutorials/getting-started": ["layouts/tutorial.html", "tutorials/getting-started"]
+		"dist/tutorials/getting-started": ["layouts/tutorial.html", "tutorials/getting-started"],
+		"dist/tutorials/migrate-to-webpack": ["layouts/tutorial.html", "tutorials/migrate-to-webpack"]
 	};
 	grunt.initConfig({
 		webpack: {
@@ -106,7 +114,7 @@ module.exports = function(grunt) {
 	grunt.registerTask("development", ["staticwiki:development", "statictutorial:development", "webpack-dev-server:development", "watch"]);
 	grunt.registerTask("production", ["webpack:production", "staticwiki:production", "statictutorial:production"]);
 	grunt.registerTask("deploy", ["clean", "webpack:production", "staticwiki:production", "statictutorial:production", "gh-pages"]);
-	grunt.registerTask("tutorial-development", ["statictutorial:development", "watch:tutorial", "webpack-dev-server:development"]);
+	grunt.registerTask("tutorial-development", ["statictutorial:development", "webpack-dev-server:development", "watch:tutorial"]);
 	grunt.registerTask("wiki-development", ["staticwiki:development", "webpack-dev-server:development", "watch:wiki"]);
 
 	grunt.registerTask("dev", ["development"]);
