@@ -42,12 +42,14 @@ module.exports = function(grunt) {
 			development: {
 				files: {
 					"dist/index.html": "layouts/landing.html",
+					"dist/404.html": "layouts/404.html",
 					"dist/[title].html": "layouts/doc.html"
 				},
 			},
 			production: {
 				files: {
 					"dist/index.html": "layouts/landing.html",
+					"dist/404.html": "layouts/404.html",
 					"dist/[title].html": "layouts/doc.html"
 				},
 				options: {
@@ -101,11 +103,11 @@ module.exports = function(grunt) {
 			},
 		},
 	});
-	grunt.registerTask("development", ["webpack-dev-server:development", "staticwiki:development", "statictutorial:development", "watch"]);
+	grunt.registerTask("development", ["staticwiki:development", "statictutorial:development", "webpack-dev-server:development", "watch"]);
 	grunt.registerTask("production", ["webpack:production", "staticwiki:production", "statictutorial:production"]);
 	grunt.registerTask("deploy", ["clean", "webpack:production", "staticwiki:production", "statictutorial:production", "gh-pages"]);
-	grunt.registerTask("tutorial-development", ["webpack-dev-server:development", "statictutorial:development", "watch:tutorial"]);
-	grunt.registerTask("wiki-development", ["webpack-dev-server:development", "staticwiki:development", "watch:wiki"]);
+	grunt.registerTask("tutorial-development", ["statictutorial:development", "watch:tutorial", "webpack-dev-server:development"]);
+	grunt.registerTask("wiki-development", ["staticwiki:development", "webpack-dev-server:development", "watch:wiki"]);
 
 	grunt.registerTask("dev", ["development"]);
 	grunt.registerTask("tutdev", ["tutorial-development"]);
