@@ -10,7 +10,10 @@ require("./onContentLoaded")(function(event) {
 	var titleElement = document.getElementById("title");
 	var resultsElement = document.getElementById("results");
 	
-	var searchString = linkToTitle(location.pathname.substr(1).replace(/\.html$/i, ""));
+	var pathname = location.pathname.substr(1);
+	if(/404(\.html)$/.test(pathname))
+		pathname = location.search.substr(2);
+	var searchString = linkToTitle(pathname.replace(/\.html$/i, "")).trim();
 	titleElement.textContent = "Search '" + searchString + "'";
 	
 	require(["../lib/extractRegExpFromText", "./downloadWiki", "./FullTextSearcher"], function(extractRegExpFromText, downloadWiki, FullTextSearcher) {
