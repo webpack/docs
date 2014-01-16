@@ -14,7 +14,7 @@ require("./onContentLoaded")(function(event) {
 	if(/404(\.html)?$/.test(pathname))
 		pathname = location.search.substr(2);
 	var searchString = linkToTitle(pathname.replace(/\.html$/i, "")).trim();
-	titleElement.textContent = "Search '" + searchString + "'";
+	document.title = titleElement.textContent = "Search '" + searchString + "'";
 	
 	require(["../lib/extractRegExpFromText", "./downloadWiki", "./FullTextSearcher"], function(extractRegExpFromText, downloadWiki, FullTextSearcher) {
 		var searcher = new FullTextSearcher(searchString);
