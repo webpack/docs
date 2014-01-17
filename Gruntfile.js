@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 			if(err) throw err;
 			grunt.log.writeln("webpack executed from " + path.basename(p));
 			grunt.log.writeln(stats.toString({
+				context: __dirname,
 				chunks: false,
 				modules: true,
 				hash: false,
@@ -20,8 +21,8 @@ module.exports = function(grunt) {
 				colors: true
 			}));
 			callback(null, "<pre><code>" + stats.toString({
-				hash: false,
-				context: p
+				context: __dirname,
+				hash: false
 			}) + "</code></pre>");
 		});
 	}
