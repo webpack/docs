@@ -56,12 +56,14 @@ module.exports = function(grunt) {
 				var url = step.url;
 				var content = grunt.file.read(path.join(fullPath, "README.md"));
 				var ignoredFiles = step.ignoredFiles = grunt.file.exists(path.join(fullPath, ".tutorialignore")) ?
-					grunt.file.read(path.join(fullPath, ".tutorialignore")).split("\n").filter(Boolean) :
+					grunt.file.read(path.join(fullPath, ".tutorialignore")).split(/[\r\n]/).filter(Boolean) :
 					[];
-				step.files = grunt.file.expand({ cwd: fullPath }, ["*"]).map(function(name) {
-					return name.replace(/\\/g, "/");
-				}).filter(function(name) {
-					return (["README.md"].indexOf(name) < 0) && (ignoredFiles.indexOf(name) < 0);
+				step.files = [];
+				grunt.file.recurse(fullPath, function(abspath, rootdir, subdir, filename) {
+					var name = subdir ? subdir + "/" + filename : filename;
+					name = name.replace(/\\/g, "/");
+					if(name[0] !== "." && filename[0] !== "." && (["README.md"].indexOf(name) < 0) && (ignoredFiles.indexOf(name) < 0))
+						step.files.push(name);
 				});
 
 				var title = /#\s+(.+)/.exec(content);
@@ -103,12 +105,18 @@ module.exports = function(grunt) {
 						};
 					}
 				});
+				grunt.log.writeln("Files:");
 				Object.keys(currentFiles).forEach(function(filename) {
+					grunt.log.writeln("* " + url + "/" + filename);
 					grunt.file.write(path.join(destPath, filename), currentFiles[filename]);
 				});
-				grunt.file.expand({ cwd: fullPath }, ["*"]).forEach(function(filename) {
-					if(Object.prototype.hasOwnProperty.call(currentFiles, filename)) return;
-					grunt.file.copy(path.join(fullPath, filename), path.join(destPath, filename));
+				grunt.file.recurse(fullPath, function(abspath, rootdir, subdir, filename) {
+					var name = subdir ? subdir + "/" + filename : filename;
+					if(name[0] !== "." && filename[0] !== ".") {
+						if(Object.prototype.hasOwnProperty.call(currentFiles, name)) return;
+						grunt.log.writeln("* " + url + "/" + name);
+						grunt.file.copy(path.join(fullPath, name), path.join(destPath, name));
+					}
 				});
 				grunt.log.writeln("Executing command for " + url + "...");
 				command(destPath, function(err, output) {
@@ -150,12 +158,12 @@ module.exports = function(grunt) {
 							// Display a file in a iframe
 							if(!Object.prototype.hasOwnProperty.call(currentFiles, cmd))
 								grunt.file.copy(path.join(fullPath, cmd), path.join(dest, url, cmd));
-							return "<iframe class=\"tutorial-iframe\" seamless src=\"" + url + "/" + cmd + "\"></iframe>";
+							return "<iframe class=\"tutorial-iframe\" seamless src=\"" + folder + "/" + url + "/" + cmd + "\"></iframe>";
 						}
 					});
 					
 					var sidebar = "<ul>" + steps.map(function(sstep) {
-						return "<li><a href=\"" + sstep.url + ".html\"" + (step === sstep ? " class=\"active\"" : "") + ">" +
+						return "<li><a href=\"" + folder + "/" + sstep.url + ".html\"" + (step === sstep ? " class=\"active\"" : "") + ">" +
 							sstep.title + "</a></li>";
 					}).join("\n") + "</ul>";
 
@@ -163,8 +171,8 @@ module.exports = function(grunt) {
 						.replace(/\{\{title\}\}/gi, step.title)
 						.replace(/\{\{sidebar\}\}/gi, sidebar)
 						.replace(/\{\{content\}\}/gi, content)
-						.replace(/\{\{nexturl\}\}/gi, i === steps.length - 1 ? "" : steps[i+1].url + ".html")
-						.replace(/\{\{prevurl\}\}/gi, i === 0 ? "" : steps[i-1].url + ".html");
+						.replace(/\{\{nexturl\}\}/gi, i === steps.length - 1 ? "" : folder + "/" + steps[i+1].url + ".html")
+						.replace(/\{\{prevurl\}\}/gi, i === 0 ? "" : folder + "/" + steps[i-1].url + ".html");
 
 					if(minify) html = htmlMinifier.minify(html, {
 						removeComment: true,
@@ -188,10 +196,11 @@ module.exports = function(grunt) {
 function diffFiles(oldContent, newContent) {
 	var language = hljs.highlightAuto(newContent).language;
 	var d = "<pre><code>" + diff(oldContent.split("\n"), newContent.split("\n")).map(function(action) {
+		var code = (language ? hljs.highlight(language, action.atom).value : action.atom)
 		switch(action.operation) {
-		case "none": return "<div>  " + hljs.highlight(language, action.atom).value + "</div>";
-		case "add": return '<div class="addition">+ ' + hljs.highlight(language, action.atom).value + "</div>";
-		case "delete": return '<div class="deletion">- ' + hljs.highlight(language, action.atom).value + "</div>";
+		case "none": return "<div>  " + code + "</div>";
+		case "add": return '<div class="addition">+ ' + code + "</div>";
+		case "delete": return '<div class="deletion">- ' + code + "</div>";
 		}
 	}).join("") + "</code></pre>";
 	return d;

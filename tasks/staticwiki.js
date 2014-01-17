@@ -1,6 +1,7 @@
 var renderMarkdown = require("../lib/renderMarkdown");
 var titleToLink = require("../lib/titleToLink");
 var linkToTitle = require("../lib/linkToTitle");
+var extractRegExpFromText = require("../lib/extractRegExpFromText");
 var htmlMinifier = require("html-minifier");
 var https = require("https");
 var http = require("http");
@@ -106,19 +107,6 @@ module.exports = function(grunt) {
 
 	function extractIntraLinksFromMarkdown(md) {
 		return extractRegExpFromText(md, /\[\[(?:[^\]\|]+\|\s*)?([a-z0-9 \-_\.]+)\]\]/gi, titleToLink);
-	}
-
-	function extractRegExpFromText(text, regExp, postprocessFn) {
-		var array = [];
-
-		var match;
-		while(match = regExp.exec(text)) {
-			var link = titleToLink(match[1]);
-			if(array.indexOf(link) < 0)
-				array.push(link);
-		}
-
-		return array;
 	}
 
 	function downloadWikiContent(wikiPath, callback) {

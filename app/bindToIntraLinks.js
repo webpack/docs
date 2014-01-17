@@ -1,4 +1,5 @@
 var linkToTitle = require("../lib/linkToTitle");
+var downloadWiki = require("./downloadWiki");
 
 var LRU = require("lru-cache");
 
@@ -90,34 +91,29 @@ function loadPage(wiki, initial) {
 
 	if(!initial && document.body.classList) document.body.classList.add("loading");
 
-	var request = new XMLHttpRequest();
-	request.open("GET", "http://github-wiki.herokuapp.com/webpack/docs/" + wiki, true);
-	request.onreadystatechange = function() {
-		if(request.readyState === 4) {
-			if(request.status !== 200) {
-				if(initial) {
-					if(document.body.classList) document.body.classList.remove("loading");
-					return;
-				}
-				next(request.status + " " + request.statusText);
-			} else {
-				require(["../lib/renderMarkdown"], function(renderMarkdown) {
-					next(renderMarkdown(request.responseText));
-				});
-			}
-			function next(result) {
-				pagesCache.set(wiki, result);
+	downloadWiki(wiki, function(err, result) {
+		if(err) {
+			if(initial) {
 				if(document.body.classList) document.body.classList.remove("loading");
-				editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
-				titleElement.innerHTML = linkToTitle(wiki);
-				contentElement.innerHTML = result;
-				window.scrollTo(0, 0);
-				if(!initial) reportAnalytics();
-				if(initial) bindIntraLinks();
-				highlightIntraLinks();
+				return;
 			}
+			window.location.reload();
+		} else {
+			require(["../lib/renderMarkdown"], function(renderMarkdown) {
+				next(renderMarkdown(result));
+			});
 		}
-	};
-	request.send(null);
+		function next(result) {
+			pagesCache.set(wiki, result);
+			if(document.body.classList) document.body.classList.remove("loading");
+			editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
+			titleElement.innerHTML = linkToTitle(wiki);
+			contentElement.innerHTML = result;
+			window.scrollTo(0, 0);
+			if(!initial) reportAnalytics();
+			if(initial) bindIntraLinks();
+			highlightIntraLinks();
+		}
+	});
 	require(["../lib/renderMarkdown"]); // Start loading in parallel
 }
