@@ -2,7 +2,7 @@
 
 This small tutorial will guide you through a simple example.
 
-You'll lern:
+You'll learn:
 
 * How to install webpack
 * How to use webpack
