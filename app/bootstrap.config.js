@@ -10,7 +10,7 @@ module.exports = {
 		scaffolding: true,
 		type: true,
 		code: true,
-		grid: true,
+		// grid: true,
 		tables: true,
 		pager: true,
 		panels: true,

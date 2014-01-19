@@ -31,19 +31,17 @@ body
   width: 100%
   height: 220px
   position: relative
-  margin-left: -20px
-  .name
-    font-size: 2em
-    position: absolute
-    top: 200px
-    left: 60px
-    font-weight: bold
-  .tagline
-    font-size: 0.8em
-    position: absolute
-    top: 240px
-    left: 100px
-    width: 150px
+  overflow: hidden
+.name
+  font-size: 2em
+  font-weight: bold
+  padding-left: 50%
+  margin-left: -70px
+  line-height: 1.2em
+.tagline
+  font-size: 0.8em
+  padding-left: 50%
+  margin-left: -30px
 
 .cube
   cube(100px, rgba(126,169,232,0.5))
@@ -116,3 +114,19 @@ iframe.tutorial-iframe
   background: #F5F5F5
   padding: 5px
   margin: 10px
+
+
+@media (min-width: 992px)
+  .row
+    display: flex;
+    .col-md-3, .col-md-6, .col-md-9, .col-md-12
+      padding-left: 15px
+      padding-right: 15px
+    .col-md-3
+      flex: 3
+    .col-md-6
+      flex: 6
+    .col-md-9
+      flex: 9
+    .col-md-12
+      flex: 12
