@@ -87,11 +87,11 @@
 
 	var $, template;
 
-	require(6);
+	require(7);
 
 	$ = require(1);
 
-	template = require(8);
+	template = require(6);
 
 	exports.render = function(model) {
 	  return $("body").html(template({
@@ -128,26 +128,6 @@
 /* 6 */
 /***/ function(module, exports, require) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	var dispose = require(9)
-		// The css code:
-		(require(7))
-	if(false) {
-		module.hot.accept();
-		module.hot.dispose(dispose);
-	}
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, require) {
-
-	module.exports =
-		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, require) {
-
 	var jade = require(10);
 
 	module.exports = function anonymous(locals) {
@@ -157,6 +137,26 @@
 	}
 	return buf.join("");
 	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, require) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	var dispose = require(9)
+		// The css code:
+		(require(8))
+	if(false) {
+		module.hot.accept();
+		module.hot.dispose(dispose);
+	}
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, require) {
+
+	module.exports =
+		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
 
 /***/ },
 /* 9 */
