@@ -1,78 +1,91 @@
+// FONT
+@import url("http://fonts.googleapis.com/css?family=Averia+Sans+Libre:400,700,400italic,700italic|Ubuntu+Mono:400,700|Kreon:400,700");
+
+sansSerif()
+	font-family: 'Averia Sans Libre', Arial, sans-serif
+
+serif()
+	font-family: 'Kreon', 'Times New Roman', Times, serif
+
+monospace()
+	font-family: 'Ubuntu Mono', 'Courier New', monospace
+
+
 // CUBE
 cube(size=100px, color=#c4dafb)
-  width: 100%
-  height: 100%
-  position: absolute
-  display: block
-  padding: 0
-  margin: -(size/2) 0 0 -(size/2)
-  top: 50%
-  left: 50%
-  transform-origin: (size/2) (size/2)
-  //transform-origin: 50% 50%
-  li
-    display: block
-    position: absolute
-    width: size
-    height: size
-    transition: transform 1s ease-in-out
-  .front, .back, .right, .left, .top
-    background: radial-gradient(transparent 30%, rgba(darken(color, 70%), 0.2) 100%)
-  li:after
-    content: ""
-    display: block
-    position: absolute
-    width: size
-    height: size
-    backface-visibility:hidden
-    background-color: color
-    transition: transform 1s ease-in-out
-  .front
-    transform: translateZ(size/2)
-  .back
-    transform: rotateX(-180deg) translateZ(size/2)
-  .right
-    transform: rotateY(90deg) translateZ(size/2)
-  .left
-    transform: rotateY(-90deg) translateZ(size/2)
-  .top
-    transform: rotateX(90deg) translateZ(size/2)
-  .top:after
-    background-color: lighten(color, 20%)
-  .bottom
-    transform: rotateX(-90deg) translateZ(size/2)
-  .floor:after
-    display: none
-  .floor
-    box-shadow(-300px 0px 50px rgba(0, 0, 0, 0.3))
-    backface-visibility:visible
-    width: size + 10px
-    height: size + 10px
-    left: 295px
-    background-color: rgba(0, 0, 0, 0)
-    transform: rotateX(-90deg) translateZ(size / 2 + 10)
+	width: 100%
+	height: 100%
+	position: absolute
+	display: block
+	padding: 0
+	margin: -(size/2) 0 0 -(size/2)
+	top: 50%
+	left: 50%
+	transform-origin: (size/2) (size/2)
+	//transform-origin: 50% 50%
+	li
+		display: block
+		position: absolute
+		width: size
+		height: size
+		transition: transform 1s ease-in-out
+	.front, .back, .right, .left, .top
+		background: radial-gradient(transparent 30%, rgba(darken(color, 70%), 0.2) 100%)
+	li:after
+		content: ""
+		display: block
+		position: absolute
+		width: size
+		height: size
+		backface-visibility:hidden
+		background-color: color
+		transition: transform 1s ease-in-out
+	.front
+		transform: translateZ(size/2)
+	.back
+		transform: rotateX(-180deg) translateZ(size/2)
+	.right
+		transform: rotateY(90deg) translateZ(size/2)
+	.left
+		transform: rotateY(-90deg) translateZ(size/2)
+	.top
+		transform: rotateX(90deg) translateZ(size/2)
+	.top:after
+		background-color: lighten(color, 20%)
+	.bottom
+		transform: rotateX(-90deg) translateZ(size/2)
+	.floor:after
+		display: none
+	.floor
+		box-shadow(-300px 0px 50px rgba(0, 0, 0, 0.3))
+		backface-visibility:visible
+		width: size + 10px
+		height: size + 10px
+		left: 295px
+		background-color: rgba(0, 0, 0, 0)
+		transform: rotateX(-90deg) translateZ(size / 2 + 10)
 
 cubeRotateX = -33.5deg
 cubeRotateY = 45deg
 
 // SPIN
 @keyframes slowspin
-  0%
-    transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 0deg)
-  10%
-    transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 180deg)
-  100%
-    transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 180deg)
+	0%
+		transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 0deg)
+	10%
+		transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 180deg)
+	100%
+		transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 180deg)
 
 @keyframes fastspin
-  0%
-    transform: rotateX(cubeRotateX) rotateY(cubeRotateY - 0deg)
-  10%
-    transform: rotateX(cubeRotateX) rotateY(cubeRotateY - 360deg)
-  100%
-    transform: rotateX(cubeRotateX) rotateY(cubeRotateY - 360deg)
+	0%
+		transform: rotateX(cubeRotateX) rotateY(cubeRotateY - 0deg)
+	10%
+		transform: rotateX(cubeRotateX) rotateY(cubeRotateY - 360deg)
+	100%
+		transform: rotateX(cubeRotateX) rotateY(cubeRotateY - 360deg)
 
 spin(name=slowspin, speed=10s)
-  transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 0deg)
-  transform-style: preserve-3d
-  animation: name speed ease-in-out infinite 2s
+	transform: rotateX(cubeRotateX) rotateY(cubeRotateY + 0deg)
+	transform-style: preserve-3d
+	animation: name speed ease-in-out infinite 2s

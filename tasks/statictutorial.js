@@ -8,7 +8,7 @@ var hljs = require("../lib/highlight.js");
 module.exports = function(grunt) {
 	grunt.registerMultiTask("statictutorial", "Generate HTML files from layout and folders", function() {
 		var done = this.async();
-		
+
 		var command = this.options().command || function(path, callback) {
 			return callback(null, "");
 		};
@@ -135,21 +135,21 @@ module.exports = function(grunt) {
 								var data = fileUpdates[filename];
 								switch(data.type) {
 								case "added":
-									return '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">' +
+									return '<div class="panel panel-add"><h3 class="panel-title">' +
 										"add <code>" + filename + "</code>" +
-										'</h3></div><div class="panel-body">' + 
+										'</h3>' +
 										renderMarkdown("```\n" + data.content.trim() + "\n```") +
-										'</div></div>';
-								case "removed": 
-									return '<div class="alert alert-danger">' +
+										'</div>';
+								case "removed":
+									return '<div class="panel panel-remove">' +
 										"remove <code>" + filename + "</code>" +
 										'</div>'
 								case "updated":
-									return '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">' +
+									return '<div class="panel panel-update"><h3 class="panel-title">' +
 										"update <code>" + filename + "</code>" +
-										'</h3></div><div class="panel-body">' + 
+										'</h3>' +
 										diffFiles(data.oldContent, data.newContent) +
-										'</div></div>';
+										'</div>';
 								}
 							}).join("\n\n");
 						} else if(cmd === "output") {
@@ -165,12 +165,12 @@ module.exports = function(grunt) {
 				});
 			}, function(err) {
 				if(err) return callback(err);
-				
+
 				var sidebar = "<ul>" + steps.map(function(sstep, idx) {
 					return "<li><a href=\"" + folder + "/#" + sstep.url + "\">" + (idx+1) + ". " +
 						sstep.title + "</a></li>";
 				}).join("\n") + "</ul>";
-				
+
 				var content = steps.map(function(sstep) {
 					return "<a id=\"" + sstep.url + "\" class=\"anchor\"></a>" + sstep.html;
 				}).join("<hr />");

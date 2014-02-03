@@ -1,130 +1,129 @@
 @import 'nib';
 @import 'variables.styl'
 @import 'mixins.styl';
+@import 'general.styl'
 @import 'sidebar.styl';
 @import 'contents.styl';
 
-body
-  font-size: 16px
-  background-color: #eee
-
 .todo
-  color: #ff69b4
-  border: 1px solid #ff69b4
+	color: #ff69b4
+	border: 1px solid #ff69b4
 
 .intro
-  margin: 30px 0 50px 0
-  font-size: 1.5em
-  text-align: center
-  .types
-    display: inline-block
-    position: relative
-    top: 51px
-    padding: 0 5px
-    margin: 0
-    li
-      list-style: none
-      padding: 0
-      margin: 0
+	margin: 30px 0 50px 0
+	font-size: 1.5em
+	text-align: center
+	.types
+		display: inline-block
+		position: relative
+		top: 51px
+		padding: 0 5px
+		margin: 0
+		li
+			list-style: none
+			padding: 0
+			margin: 0
 
 .logo
-  width: 100%
-  height: 220px
-  position: relative
-  overflow: hidden
+	width: 100%
+	height: 220px
+	position: relative
+	overflow: hidden
 .name
-  font-size: 2em
-  font-weight: bold
-  padding-left: 50%
-  margin-left: -70px
-  line-height: 1.2em
+	font-size: 2em
+	font-weight: bold
+	padding-left: 50%
+	margin-left: -70px
+	line-height: 1.2em
 .tagline
-  font-size: 0.8em
-  padding-left: 50%
-  margin-left: -30px
+	font-size: 0.8em
+	padding-left: 50%
+	margin-left: -30px
 
 .cube
-  cube(100px, rgba(126,169,232,0.5))
-  spin()
-  margin: -50px 0 0 -50px
-  top: 50%
-  left: 50%
+	cube(100px, rgba(126,169,232,0.5))
+	spin()
+	margin: -50px 0 0 -50px
+	top: 50%
+	left: 50%
 
 .cube-inner
-  cube(50px, rgba(16,58,177,0.5))
-  margin: -25px 0 0 -25px
-  spin(fastspin)
+	cube(50px, rgba(16,58,177,0.5))
+	margin: -25px 0 0 -25px
+	spin(fastspin)
 
 .loading
-  transition: opacity 1s linear, background 1s linear
-  background: white
-  opacity: 0
+	transition: opacity 1s linear, background 1s linear
+	background: white
+	opacity: 0
 
 /* Code highlighting */
 code
-  .comment
-    color: #998
-    font-style: italic
-  .keyword
-    color: #333
-    font-weight: bold
-  .number
-    color: #099
-  .string
-    color: #d14
-  .tag
-    color: #000080
-    font-weight: normal
-  .attribute
-    color: #008080
-  .regexp
-    color: #009926
-  .preprocessor
-    color: #999
-    font-weight: bold
-  .deletion
-    background: #fdd
-    display: block
-  .addition
-    background: #dfd
-    display: block
+	.comment
+		color: #998
+		font-style: italic
+	.keyword
+		color: #333
+		font-weight: bold
+	.number
+		color: #099
+	.string
+		color: #d14
+	.tag
+		color: #000080
+		font-weight: normal
+	.attribute
+		color: #008080
+	.regexp
+		color: #009926
+	.preprocessor
+		color: #999
+		font-weight: bold
+	.deletion
+		background: #fdd
+		display: block
+	.addition
+		background: #dfd
+		display: block
 
 .anchor
-  display: none
+	display: none
 
 h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover
-  .anchor
-    position: relative
-    top: 15%
-    display: inline-block
-    font-size: 70%
-    text-align: right
-    margin-left: -30px
-    width: 30px
+	.anchor
+		display: inline-block
+		font-size: 70%
+		text-align: right
+		margin-left: -40px
+		width: 40px
+		vertical-align: top
+		&:hover, &:focus
+			text-decoration: none
+			font-weight: 700
 
 iframe.tutorial-iframe
-  width: 100%
-  height: 200px
-  border: 3px dashed #333
+	width: 100%
+	height: 200px
+	border: 3px dashed #333
 
 .feature
-  border: 2px solid #CCC
-  background: #F5F5F5
-  padding: 5px
-  margin: 10px
+	border: 2px solid #CCC
+	background: #F5F5F5
+	padding: 5px
+	margin: 10px
 
 
 @media (min-width: 992px)
-  .row
-    display: flex;
-    .col-md-3, .col-md-6, .col-md-9, .col-md-12
-      padding-left: 15px
-      padding-right: 15px
-    .col-md-3
-      flex: 3
-    .col-md-6
-      flex: 6
-    .col-md-9
-      flex: 9
-    .col-md-12
-      flex: 12
+	.row
+		display: flex;
+		.col-md-3, .col-md-6, .col-md-9, .col-md-12
+			padding-left: 15px
+			padding-right: 15px
+		.col-md-3
+			flex: 3
+		.col-md-6
+			flex: 6
+		.col-md-9
+			flex: 9
+		.col-md-12
+			flex: 12
