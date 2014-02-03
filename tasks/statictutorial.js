@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 				var title = /#\s+(.+)/.exec(content);
 				step.title = title && title[1] || url;
 
-				step.content = renderMarkdown(content);
+				step.content = renderMarkdown(content, true);
 			}
 			var currentFiles = {};
 			async.timesSeries(steps.length, function(i, callback) {
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
 				grunt.log.writeln("Executing command for " + url + "...");
 				command(destPath, function(err, output) {
 					grunt.log.writeln("Generating file for " + url + "...");
-					var content = step.content.replace(/\<p\>\$\$\$\s+([^\<]+)\<\/p\>/g, function(match, cmd) {
+					step.html = step.content.replace(/\<p\>\$\$\$\s+([^\<]+)\<\/p\>/g, function(match, cmd) {
 						if(cmd === "files") {
 							return Object.keys(fileUpdates).sort(function(a, b) {
 								var aa = fileUpdates[a];
@@ -161,34 +161,39 @@ module.exports = function(grunt) {
 							return "<iframe class=\"tutorial-iframe\" seamless src=\"" + folder + "/" + url + "/" + cmd + "\"></iframe>";
 						}
 					});
-					
-					var sidebar = "<ul>" + steps.map(function(sstep) {
-						return "<li><a href=\"" + folder + "/" + sstep.url + ".html\"" + (step === sstep ? " class=\"active\"" : "") + ">" +
-							sstep.title + "</a></li>";
-					}).join("\n") + "</ul>";
-
-					var html = layout
-						.replace(/\{\{title\}\}/gi, step.title)
-						.replace(/\{\{sidebar\}\}/gi, sidebar)
-						.replace(/\{\{content\}\}/gi, content)
-						.replace(/\{\{nexturl\}\}/gi, i === steps.length - 1 ? "" : folder + "/" + steps[i+1].url + ".html")
-						.replace(/\{\{prevurl\}\}/gi, i === 0 ? "" : folder + "/" + steps[i-1].url + ".html");
-
-					if(minify) html = htmlMinifier.minify(html, {
-						removeComment: true,
-						collapseWhitespace: true,
-						collapseBooleanAttributes: true,
-						removeAttributeQuotes: true,
-						removeRedundantAttributes: true,
-						useShortDoctype: true,
-						removeEmptyAttributes: true,
-						removeOptionalTags: true
-					});
-					grunt.log.writeln("Writing file " + url + "...");
-					grunt.file.write(path.join(dest, url + ".html"), html);
 					callback();
 				});
-			}, callback);
+			}, function(err) {
+				if(err) return callback(err);
+				
+				var sidebar = "<ul>" + steps.map(function(sstep, idx) {
+					return "<li><a href=\"" + folder + "/#" + sstep.url + "\">" + (idx+1) + ". " +
+						sstep.title + "</a></li>";
+				}).join("\n") + "</ul>";
+				
+				var content = steps.map(function(sstep) {
+					return "<a id=\"" + sstep.url + "\" class=\"anchor\"></a>" + sstep.html;
+				}).join("<hr />");
+
+				var html = layout
+					.replace(/\{\{title\}\}/gi, folder)
+					.replace(/\{\{sidebar\}\}/gi, sidebar)
+					.replace(/\{\{content\}\}/gi, content);
+
+				if(minify) html = htmlMinifier.minify(html, {
+					removeComment: true,
+					collapseWhitespace: true,
+					collapseBooleanAttributes: true,
+					removeAttributeQuotes: true,
+					removeRedundantAttributes: true,
+					useShortDoctype: true,
+					removeEmptyAttributes: true,
+					removeOptionalTags: true
+				});
+				grunt.log.writeln("Writing file...");
+				grunt.file.write(path.join(dest, "index.html"), html);
+				callback();
+			});
 		}.bind(this), done);
 	});
 };
