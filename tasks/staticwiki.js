@@ -56,9 +56,8 @@ module.exports = function(grunt) {
 							grunt.log.error(wikiPath + ": " + err.message);
 							return callback();
 						}
-						var title = /^#[^#]/.test(md) ? /^#\s*(.+)/.exec(md)[1] : null;
 						var html = renderMarkdown(md);
-						writeLayout(wikiPath, title, html);
+						writeLayout(wikiPath, html);
 						queue.push(extractIntraLinksFromMarkdown(md), function() {});
 						callback();
 					});
@@ -72,11 +71,11 @@ module.exports = function(grunt) {
 				queue.push(refs.filter(Boolean), function() {});
 			}.bind(this));
 
-			function writeLayout(link, title, wikiHtml) {
+			function writeLayout(link, wikiHtml) {
 				var file = dest.replace(/\[title\]/gi, link);
 				grunt.log.ok("Writing " + file + "...");
 				var html = layout
-					.replace(/\{\{\s*title\s*\}\}/gi, title || linkToTitle(link))
+					.replace(/\{\{\s*title\s*\}\}/gi, linkToTitle(link))
 					.replace(/\{\{\s*url\s*\}\}/gi, link)
 					.replace(/\{\{\s*wiki(?:\s+([a-z0-9 \-_]+))?\s*\}\}/gi, function(fragment) {
 						var match = /\{\{\s*wiki(?:\s+([a-z0-9 \-_]+))?\s*\}\}/gi.exec(fragment);

@@ -167,3 +167,18 @@ blockquote
 
 p > img
 	max-width: 100%
+
+@media (min-width: 992px)
+	.row
+		display: flex;
+		.col-md-3, .col-md-6, .col-md-9, .col-md-12
+			padding-left: 15px
+			padding-right: 15px
+		.col-md-3
+			flex: 3
+		.col-md-6
+			flex: 6
+		.col-md-9
+			flex: 9
+		.col-md-12
+			flex: 12

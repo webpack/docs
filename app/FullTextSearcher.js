@@ -21,7 +21,7 @@ FullTextSearcher.prototype.scanDocument = function(title, md) {
 	scoreItems(md, this.fuseSearchers);
 	return {
 		score: scores.reduce(function(a, b) { return a + b; }, 0) *
-			scores.map(function(s) { return s; }, this).reduce(function(a, b) { return Math.min(a, b); }),
+			scores.map(function(s) { return s; }, this).reduce(function(a, b) { return Math.min(a, b); }, 0),
 		scores: scores
 	};
 

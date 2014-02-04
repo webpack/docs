@@ -1,7 +1,5 @@
 require("./googleAnalytics");
 
-require('./css/style.styl');
-
 require("./onContentLoaded")(function(event) {
 	var titleToLink = require("../lib/titleToLink");
 	var linkToTitle = require("../lib/linkToTitle");
