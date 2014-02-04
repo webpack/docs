@@ -172,7 +172,7 @@ module.exports = function(grunt) {
 				}).join("\n") + "</ul>";
 
 				var content = steps.map(function(sstep) {
-					return "<a id=\"" + sstep.url + "\" class=\"anchor\"></a>" + sstep.html;
+					return "<a id=\"" + sstep.url + "\"></a>" + sstep.html;
 				}).join("<hr />");
 
 				var html = layout
