@@ -28,10 +28,6 @@
 /******/ 		return module[exports];
 /******/ 	}
 /******/ 	
-/******/ 	// The bundle contains no chunks. A empty chunk loading function.
-/******/ 	require.e = function requireEnsure(_, callback) {
-/******/ 		callback.call(null, this);
-/******/ 	};
 /******/ 	
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	require.modules = modules;
@@ -89,11 +85,11 @@
 
 	var $, template;
 
-	require(7);
+	require(6);
 
 	$ = require(1);
 
-	template = require(6);
+	template = require(8);
 
 	exports.render = function(model) {
 	  return $("body").html(template({
@@ -130,37 +126,35 @@
 /* 6 */
 /***/ function(module, exports, require) {
 
-	var jade = require(10);
-
-	module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
-	attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
-	var buf = [];
-	with (locals || {}) {
-	var interp;
-	buf.push('<h1>Hello World.</h1><p>Your User-Agent is: ' + escape((interp = model) == null ? '' : interp) + '</p>');
-	}
-	return buf.join("");
-	}
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, require) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	var dispose = require(9)
 		// The css code:
-		(require(8))
+		(require(7))
 	if(false) {
 		module.hot.accept();
 		module.hot.dispose(dispose);
 	}
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, require) {
 
 	module.exports =
 		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, require) {
+
+	var jade = require(10);
+
+	module.exports = function anonymous(locals) {
+	var buf = [];
+	with (locals || {}) {
+	buf.push("<h1>Hello World.</h1><p>Your User-Agent is: " + (jade.escape((jade.interp = model) == null ? '' : jade.interp)) + "</p>");
+	}
+	return buf.join("");
+	}
 
 /***/ },
 /* 9 */
@@ -323,7 +317,7 @@
 
 	exports.escape = function escape(html){
 	  return String(html)
-	    .replace(/&(?!(\w+|\#\d+);)/g, '&amp;')
+	    .replace(/&/g, '&amp;')
 	    .replace(/</g, '&lt;')
 	    .replace(/>/g, '&gt;')
 	    .replace(/"/g, '&quot;');
@@ -341,6 +335,7 @@
 
 	exports.rethrow = function rethrow(err, filename, lineno){
 	  if (!filename) throw err;
+	  if (typeof window != 'undefined') throw err;
 
 	  var context = 3
 	    , str = require(11).readFileSync(filename, 'utf8')
@@ -369,9 +364,7 @@
 /* 11 */
 /***/ function(module, exports, require) {
 
-	var files = {};
-	exports.setFile = function(filename, content) { files[filename] = content; }
-	exports.readFileSync = function(filename) { return files[filename] || ""; }
+
 
 /***/ }
 /******/ ])
