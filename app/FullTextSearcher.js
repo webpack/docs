@@ -20,8 +20,8 @@ FullTextSearcher.prototype.scanDocument = function(title, md) {
 	scores = scores.map(function(s) { return s*10; });
 	scoreItems(md, this.fuseSearchers);
 	return {
-		score: scores.reduce(function(a, b) { return a + b; }, 0) *
-			scores.map(function(s) { return s; }, this).reduce(function(a, b) { return Math.min(a, b); }, 0),
+		score: scores.length > 0 ? scores.reduce(function(a, b) { return a + b; }, 0) *
+			scores.map(function(s) { return s; }, this).reduce(function(a, b) { return Math.min(a, b); }) : 0,
 		scores: scores
 	};
 

@@ -84,7 +84,7 @@ module.exports = function(grunt) {
 			development: {
 				contentBase: "dist",
 				port: 8088, // http://localhost:8088/webpack-dev-server/webpack-getting-started.html
-				webpack: grunt.util._.merge(require("./webpack.config.js"), {
+				webpack: grunt.util._.merge(Object.create(require("./webpack.config.js")), {
 					devtool: "eval"
 				})
 			}
