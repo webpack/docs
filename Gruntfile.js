@@ -84,7 +84,7 @@ module.exports = function(grunt) {
 			development: {
 				contentBase: "dist",
 				port: 8088, // http://localhost:8088/webpack-dev-server/webpack-getting-started.html
-				webpack: grunt.util._.merge(Object.create(require("./webpack.config.js")), {
+				webpack: merge(require("./webpack.config.js"), {
 					devtool: "eval"
 				})
 			}
@@ -147,3 +147,14 @@ module.exports = function(grunt) {
 	grunt.registerTask("wikidev", ["wiki-development"]);
 	grunt.registerTask("default", ["production"]);
 };
+
+function merge(a, b) {
+	var o = {};
+	for(var key in a) {
+		o[key] = a[key];
+	}
+	for(var key in b) {
+		o[key] = b[key];
+	}
+	return o;
+}
