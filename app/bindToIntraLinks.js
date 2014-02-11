@@ -84,7 +84,10 @@ function loadPage(wiki, initial) {
 		editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
 		titleElement.innerHTML = linkToTitle(wiki);
 		contentElement.innerHTML = cacheEntry;
-		if(!initial) reportAnalytics();
+		if(!initial) {
+			if(!window.location.hash) window.scrollTo(0, 0);
+			reportAnalytics();
+		}
 		highlightIntraLinks();
 		return;
 	}
@@ -109,8 +112,10 @@ function loadPage(wiki, initial) {
 			editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
 			titleElement.innerHTML = linkToTitle(wiki);
 			contentElement.innerHTML = result;
-			window.scrollTo(0, 0);
-			if(!initial) reportAnalytics();
+			if(!initial) {
+				if(!window.location.hash) window.scrollTo(0, 0);
+				reportAnalytics();
+			}
 			if(initial) bindIntraLinks();
 			highlightIntraLinks();
 		}
