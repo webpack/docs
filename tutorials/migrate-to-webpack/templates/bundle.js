@@ -76,7 +76,7 @@
 
 	$ = require(3);
 
-	template = require(6);
+	template = require(7);
 
 	exports.render = function(model) {
 	  return $("body").html(template({
@@ -103,7 +103,7 @@
 /***/ function(module, exports, require) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
-	var dispose = require(7)
+	var dispose = require(6)
 		// The css code:
 		(require(5))
 	if(false) {
@@ -120,22 +120,6 @@
 
 /***/ },
 /* 6 */
-/***/ function(module, exports, require) {
-
-	var jade = require(10);
-
-	module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
-	attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
-	var buf = [];
-	with (locals || {}) {
-	var interp;
-	buf.push('<h1>Hello World.</h1><p>Your User-Agent is: ' + escape((interp = model) == null ? '' : interp) + '</p>');
-	}
-	return buf.join("");
-	}
-
-/***/ },
-/* 7 */
 /***/ function(module, exports, require) {
 
 	/*
@@ -155,6 +139,22 @@
 		return function() {
 			head.removeChild(styleElement);
 		};
+	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, require) {
+
+	var jade = require(10);
+
+	module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
+	attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
+	var buf = [];
+	with (locals || {}) {
+	var interp;
+	buf.push('<h1>Hello World.</h1><p>Your User-Agent is: ' + escape((interp = model) == null ? '' : interp) + '</p>');
+	}
+	return buf.join("");
 	}
 
 /***/ },
