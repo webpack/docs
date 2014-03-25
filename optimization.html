@@ -43,4 +43,14 @@ module.exports = {
 <span class=comment>// page2.html: commons.js, p2.js</span>
 <span class=comment>// page3.html: p3.js</span>
 <span class=comment>// admin-page1.html: commons.js, admin-commons.js, ap1.js</span>
-<span class=comment>// admin-page2.html: commons.js, admin-commons.js, ap2.js</span></code></pre></div></div></div></div></div><a href=https://github.com/webpack/webpack><img style="position: absolute; top: 0; left: 0; border: 0" src=https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png alt="Fork me on GitHub"></a>
+<span class=comment>// admin-page2.html: commons.js, admin-commons.js, ap2.js</span></code></pre><p>Advanced hint: You can run code inside the commons chunk:</p><pre><code><span class=keyword>var</span> CommonsChunkPlugin = require(<span class=string>"webpack/lib/optimize/CommonsChunkPlugin"</span>);
+module.exports = {
+  entry: {
+    p1: <span class=string>"./page1"</span>,
+    p2: <span class=string>"./page2"</span>,
+    <span class=string>"commons.js"</span>: <span class=string>"./entry-for-the-commons-chunk"</span>
+  },
+  plugins: [
+    <span class=keyword>new</span> CommonsChunkPlugin(<span class=string>"commons.js"</span>, [<span class=string>"p1"</span>, <span class=string>"p2"</span>])
+  ]
+};</code></pre></div></div></div></div></div><a href=https://github.com/webpack/webpack><img style="position: absolute; top: 0; left: 0; border: 0" src=https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png alt="Fork me on GitHub"></a>
