@@ -26,6 +26,6 @@ Note: You can remove the generated file `styles.less.css`.
 
 We moved all referenced static resources into the bundle...
 
-> Note: If you write a single page application this step is useful, but if you write a progressiv enhanced application you shouldn't do it.
+> Note: If you write a single page application this step is useful, but if you write a progressively enhanced application you shouldn't do it.
 
 $$$ index.html
