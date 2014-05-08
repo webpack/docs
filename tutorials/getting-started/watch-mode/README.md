@@ -6,7 +6,7 @@ We don't want to manually recompile after every change...
 webpack --progress --colors --watch
 ```
 
-Webpack can cache unchanged modules between compilations. Just add `--cache` or insert it into your config file: 
+Webpack can cache unchanged modules and output files between compilations.
 
 $$$ files
 
