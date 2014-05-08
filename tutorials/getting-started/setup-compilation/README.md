@@ -18,6 +18,6 @@ If successful it displays something like this:
 
 $$$ output
 
-Open `index.js` in your browser. It should display `It works.`
+Open `index.html` in your browser. It should display `It works.`
 
 $$$ index.html

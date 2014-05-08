@@ -2,7 +2,7 @@
 
 In this small tutorial we will migrate a very simple web app to a webpack-built app.
 
-You'll lern:
+You'll learn:
 
 * How to 
 

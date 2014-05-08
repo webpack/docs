@@ -14,6 +14,6 @@ $$$ files
 
 So finally we really moved **all** static resources into the bundle!
 
-> Note: This is again of course not suitable for a progressiv enhanced application.
+> Note: This is again of course not suitable for a progressively enhanced application.
 
 $$$ index.html
