@@ -6,7 +6,7 @@
         <span class=tag>&lt;<span class=title>script</span> <span class=attribute>type</span>=<span class=value>"text/javascript"</span> <span class=attribute>src</span>=<span class=value>"bundle.js"</span> <span class=attribute>charset</span>=<span class=value>"utf-8"</span>&gt;</span><span class=javascript></span><span class=tag>&lt;/<span class=title>script</span>&gt;</span>
     <span class=tag>&lt;/<span class=title>body</span>&gt;</span>
 <span class=tag>&lt;/<span class=title>html</span>&gt;</span></code></pre></div><p>Then run the following:</p><pre><code>$ webpack ./entry.js bundle.js</code></pre><p>It will compile your file and create a bundle file.</p><p>If successful it displays something like this:</p><pre><code>Version: webpack 1.3.1-beta4
-Time: 444ms
+Time: 385ms
     Asset  Size  Chunks             Chunk Names
 bundle.js  1524       0  [emitted]  main
 chunk    {0} bundle.js (main) 28 [rendered]
@@ -24,12 +24,12 @@ chunk    {0} bundle.js (main) 28 [rendered]
         ]
     }
 };</code></pre></div><p>Now we can just run:</p><pre><code>webpack</code></pre><p>to compile:</p><pre><code>Version: webpack 1.3.1-beta4
-Time: 238ms
+Time: 43ms
     Asset  Size  Chunks             Chunk Names
 bundle.js  2892       0  [emitted]  main
-chunk    {0} bundle.js (main) 1341 [rendered]
+chunk    {0} bundle.js (main) 1314 [rendered]
     [0] ./tutorials/getting-started/config-file/entry.js 65 {0} [built]
     [1] ./tutorials/getting-started/config-file/content.js 45 {0} [built]
-    [2] ./tutorials/getting-started/config-file/style.css 457 {0} [built]
+    [2] ./tutorials/getting-started/config-file/style.css 430 {0} [built]
     [3] ../~/css-loader!./tutorials/getting-started/config-file/style.css 57 {0} [built]
     [4] ../~/style-loader/addStyle.js 717 {0} [built]</code></pre><blockquote><p>The webpack commandline try to load the file <code>webpack.config.js</code> in the current directory.</p></blockquote><hr><a id=pretty-output></a><h1>A more pretty output</h1><p>If the project grows the compilation may take a bit longer. So we want to display some kind of progress bar. And we want colors…</p><p>We can achieve this with</p><pre><code>webpack --progress --colors</code></pre><hr><a id=watch-mode></a><h1>Watch mode</h1><p>We don’t want to manually recompile after every change…</p><pre><code>webpack --progress --colors --watch</code></pre><p>Webpack can cache unchanged modules and output files between compilations.</p><blockquote><p>When using watch mode, webpack installs file watchers to all files, which were used in the compilation process. If any change is detected, it’ll run the compilation again. When caching is enabled, webpack keeps each module in memory and will reuse it if it isn’t changed.</p></blockquote><hr><a id=development-server></a><h1>Development server</h1><p>Even better it is with the development server.</p><pre><code>npm install webpack-dev-server -g</code></pre><pre><code>webpack-dev-server --progress --colors</code></pre><p>It binds a small express server on localhost:8080 which serves your static assets as well as the bundle (compiled automatically). It automatically updates the browser page when a bundle is recompiled (socket.io). Open <a href=http://localhost:8080/webpack-dev-server/bundle>http://localhost:8080/webpack-dev-server/bundle</a> in your browser.</p><blockquote><p>The dev server uses webpack’s watch mode. It also prevents webpack from emitting the result files to disk. Instead it keep and serve result files from memory.</p></blockquote></div></div></div></div></div><a href=https://github.com/webpack/webpack><img style="position: absolute; top: 0; left: 0; border: 0" src=https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png alt="Fork me on GitHub"></a>
