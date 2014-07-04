@@ -69,11 +69,11 @@
 
 	var $, template;
 
-	__webpack_require__(4);
+	__webpack_require__(5);
 
 	$ = __webpack_require__(3);
 
-	template = __webpack_require__(6);
+	template = __webpack_require__(4);
 
 	exports.render = function(model) {
 	  return $("body").html(template({
@@ -99,26 +99,6 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	var dispose = __webpack_require__(7)
-		// The css code:
-		(__webpack_require__(5))
-	if(false) {
-		module.hot.accept();
-		module.hot.dispose(dispose);
-	}
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports =
-		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var jade = __webpack_require__(10);
 
 	module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
@@ -130,6 +110,26 @@
 	}
 	return buf.join("");
 	}
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	var dispose = __webpack_require__(7)
+		// The css code:
+		(__webpack_require__(6))
+	if(false) {
+		module.hot.accept();
+		module.hot.dispose(dispose);
+	}
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports =
+		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
 
 /***/ },
 /* 7 */
