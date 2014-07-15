@@ -1,19 +1,34 @@
+.nav
+        background-color: #eee
+
 .sidebar
-	background-color: #fff
-	border-radius(5px)
-	padding: 10px
-	padding-left: 35px
-	margin: 10px
-	margin-left: -15px
 	font-size: 0.8em
 	h1
-		font-size: 18pt;
+                font-size: 18pt
 	ul
 		margin: 0
-		padding: 0 0 0 10px
-	li
-		list-style: none
-		padding: 3px 0
+                padding: 0
+                li
+                        text-transform: uppercase
+                        padding: 0
+                        margin: 0 0 1em 0
+                        list-style: none
+                        color: #333
+                        ul
+                                margin: 0
+                                padding: 0
+                                border-top: 1px solid #ddd
+                                li
+                                        margin: 0
+                                        padding: .5em 0 0 1em
+                                        text-transform: none
+                                        border: none
+                                        color: #000
+                                        font-size: 1.2em
+                                        li
+                                                font-size: 1em
 	.active
 		font-weight: bold
 		color: #333
+                display: block
+                border-right: 4px solid #ddd

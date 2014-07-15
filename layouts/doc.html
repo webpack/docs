@@ -14,12 +14,12 @@
 		<script src="js/doc.js" charset="utf-8" async></script>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
+                                <div class="col-md-3 nav">
 
 					{{include logo}}
 
 					<div class="sidebar">
-						<p><a href=".">Home</a></p>
+                                                <ul><li><a href=".">Home</a></li></ul>
 						{{wiki contents}}
 					</div>
 				</div>
@@ -35,10 +35,8 @@
 						<a href="https://github.com/webpack/docs/wiki/{{url}}/_edit" id="wikieditlink">Edit</a>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<div class="page-header">
-								<h1 id="wikititle">{{title}}</h1>
-							</div>
+                                                <div class="col-md-12 page-header">
+                                                        <h1 id="wikititle">{{title}}</h1>
 						</div>
 					</div>
 
