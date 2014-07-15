@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.13",
     "grunt-webpack": "~1.0.2",
     "html-minifier": "~0.5.4",
     "webpack": "1.x",
