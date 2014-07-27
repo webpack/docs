@@ -89,26 +89,6 @@ module.exports = function(grunt) {
 				})
 			}
 		},
-		stylus: {
-			compile: {
-				files: {
-					"dist/css/landing.css":  "app/css/landing.styl",
-					"dist/css/doc.css":      "app/css/doc.styl",
-					"dist/css/tutorial.css": "app/css/tutorial.styl",
-					"dist/css/404.css":      "app/css/404.styl"
-				}
-			}
-		},
-		cssmin: {
-			compile: {
-				files: {
-					"dist/css/landing.css":  "dist/css/landing.css",
-					"dist/css/doc.css":      "dist/css/doc.css",
-					"dist/css/tutorial.css": "dist/css/tutorial.css",
-					"dist/css/404.css":      "dist/css/404.css"
-				}
-			}
-		},
 		"gh-pages": {
 			options: {
 				message: "Publish",
@@ -122,10 +102,6 @@ module.exports = function(grunt) {
 				options: { livereload: true },
 				files: ["dist"],
 			},
-			css: {
-				files: ["app/css/*.styl"],
-				tasks: ["stylus"],
-			},
 			wiki: {
 				files: ["layouts/**/*.html", "lib/**/*.js"],
 				tasks: ["staticwiki:development"],
@@ -136,11 +112,11 @@ module.exports = function(grunt) {
 			},
 		},
 	});
-	grunt.registerTask("development", ["staticwiki:development", "statictutorial:development", "stylus", "webpack-dev-server:development", "watch"]);
-	grunt.registerTask("production", ["webpack:production", "staticwiki:production", "statictutorial:production", "stylus", "cssmin"]);
+	grunt.registerTask("development", ["staticwiki:development", "statictutorial:development", "webpack-dev-server:development", "watch"]);
+	grunt.registerTask("production", ["webpack:production", "staticwiki:production", "statictutorial:production"]);
 	grunt.registerTask("deploy", ["clean", "production", "gh-pages"]);
-	grunt.registerTask("tutorial-development", ["statictutorial:development", "stylus", "webpack-dev-server:development", "watch:tutorial"]);
-	grunt.registerTask("wiki-development", ["staticwiki:development", "stylus", "webpack-dev-server:development", "watch:wiki"]);
+	grunt.registerTask("tutorial-development", ["statictutorial:development", "webpack-dev-server:development", "watch:tutorial"]);
+	grunt.registerTask("wiki-development", ["staticwiki:development", "webpack-dev-server:development", "watch:wiki"]);
 
 	grunt.registerTask("dev", ["development"]);
 	grunt.registerTask("tutdev", ["tutorial-development"]);
