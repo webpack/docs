@@ -58,7 +58,10 @@ module.exports = function(grunt) {
 						}
 						var html = renderMarkdown(md);
 						writeLayout(wikiPath, html);
-						queue.push(extractIntraLinksFromMarkdown(md), function() {});
+						var links = extractIntraLinksFromMarkdown(md);
+						if(links.length > 0) {
+							queue.push(links, function() {});
+						}
 						callback();
 					});
 				}, 6);
