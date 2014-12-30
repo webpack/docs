@@ -2,7 +2,7 @@
 
 We want to add a css file to our application.
 
-Webpack can only handle js natively, so we need the `css-loader` to process css files. We also need the `style-loader` to apply the styles in the css file.
+webpack can only handle js natively, so we need the `css-loader` to process css files. We also need the `style-loader` to apply the styles in the css file.
 
 Create a empty `node_modules` folder.
 
