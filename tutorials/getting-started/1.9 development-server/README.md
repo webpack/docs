@@ -1,6 +1,6 @@
 # Development server
 
-Even better is with the development server.
+Even better is the development server.
 
 ``` text
 npm install webpack-dev-server -g
