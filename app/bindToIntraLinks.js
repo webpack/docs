@@ -55,7 +55,7 @@ highlightIntraLinks();
 loadCurrentPage(true);
 
 function loadCurrentPage(initial) {
-	var match = /\/([a-z0-9\-]+)\.html$/i.exec(location.pathname);
+	var match = /\/([a-z0-9\-\.]+)\.html$/i.exec(location.pathname);
 	if(match) {
 		var wiki = match[1];
 		if(wiki !== currentPage || initial) {
