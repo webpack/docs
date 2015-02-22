@@ -60,7 +60,8 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	var dispose = __webpack_require__(4)
 		// The css code:
-		(__webpack_require__(3))
+		(__webpack_require__(3));
+	// Hot Module Replacement
 	if(false) {
 		module.hot.accept();
 		module.hot.dispose(dispose);

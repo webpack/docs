@@ -14,4 +14,4 @@ to compile:
 
 $$$ output
 
-> The webpack commandline try to load the file `webpack.config.js` in the current directory.
+> The webpack command-line will try to load the file `webpack.config.js` in the current directory.
