@@ -50,8 +50,8 @@
 
 	$(function() {
 	  var model, view;
-	  model = __webpack_require__(2);
-	  view = __webpack_require__(3);
+	  model = __webpack_require__(3);
+	  view = __webpack_require__(2);
 	  return view.render(model);
 	});
 
@@ -73,13 +73,6 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = window.navigator.userAgent;
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var $;
 
 	$ = __webpack_require__(1);
@@ -87,6 +80,13 @@
 	exports.render = function(model) {
 	  return $("#user-agent").text(model);
 	};
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = window.navigator.userAgent;
 
 
 /***/ },
