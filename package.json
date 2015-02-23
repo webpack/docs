@@ -26,7 +26,7 @@
     "matchdep": "~0.3.0",
     "raw-loader": "~0.5.0",
     "style-loader": "~0.6.0",
-    "stylus-loader": "~0.4.0",
+    "stylus-loader": "~0.5.0",
     "url-loader": "~0.5.2",
     "webpack": "1.x",
     "webpack-dev-server": "~1.4.7"
