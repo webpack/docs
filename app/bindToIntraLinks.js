@@ -76,6 +76,11 @@ function reportAnalytics() {
 	ga('send', 'pageview');
 }
 
+function updateDisqus() {
+	var disqus = require("./disqus");
+	disqus.update(currentPage);
+}
+
 var EDIT_LINK = "https://github.com/webpack/docs/wiki/XXX/_edit";
 
 function loadPage(wiki, initial) {
@@ -87,6 +92,7 @@ function loadPage(wiki, initial) {
 		if(!initial) {
 			if(!window.location.hash) window.scrollTo(0, 0);
 			reportAnalytics();
+			updateDisqus();
 		}
 		highlightIntraLinks();
 		return;
@@ -115,6 +121,7 @@ function loadPage(wiki, initial) {
 			if(!initial) {
 				if(!window.location.hash) window.scrollTo(0, 0);
 				reportAnalytics();
+				updateDisqus();
 			}
 			if(initial) bindIntraLinks();
 			highlightIntraLinks();
