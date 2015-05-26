@@ -4,9 +4,7 @@ We want to add a css file to our application.
 
 webpack can only handle js natively, so we need the `css-loader` to process css files. We also need the `style-loader` to apply the styles in the css file.
 
-Create a empty `node_modules` folder.
-
-Run `npm install css-loader style-loader` to install the loaders. (They need to be installed locally, without `-g`)
+Run `npm install css-loader style-loader` to install the loaders. (They need to be installed locally, without `-g`) This will create a `node_modules` folder for you, in which the loaders will live.
 
 Let's use them:
 
