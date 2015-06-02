@@ -18,7 +18,7 @@ gulp.task(<span class=string>"webpack"</span>, <span class=function><span class=
     <span class=keyword>return</span> gulp.src(<span class=string>'src/entry.js'</span>)
         .pipe(webpack({ <span class=comment>/* webpack configuration */</span> }))
         .pipe(gulp.dest(<span class=string>'dist/'</span>));
-});</code></pre><h2 id=use-with-gulp-webpack-build><a class=anchor href=#use-with-gulp-webpack-build>&rarr;</a>Use with <a href=https://github.com/mdreizin/gulp-webpack-build>gulp-webpack-build</a></h2><p><code>gulp-webpack-build</code> also is a plugin that streams assets from webpack allowing a more idiomatic gulp way of building with webpack, but it uses <code>webpack.config.js</code> as source for stream instead of referencing entries.</p><p>It has some benefits:</p><ul><li>overrides any properties of <code>webpack.config.js</code> file via <code>webpack.compile</code> or <code>webpack.watch</code>;</li><li>control webpack stats output via <code>webpack.format</code>;</li><li>fail your build if <code>webpack</code> returns some errors or warnings via <code>webpack.failAfter</code>;</li><li>work in watching mode more productive via <code>webpack.watch</code> and have all benefits above.</li></ul><p>First install with <code>npm install gulp-webpack-build</code> and then use as follows:</p><pre><code><span class=string>'use strict'</span>;
+});</code></pre><h2 id=use-with-gulp-webpack-build><a class=anchor href=#use-with-gulp-webpack-build>&rarr;</a>Use with <a href=https://github.com/mdreizin/gulp-webpack-build>gulp-webpack-build</a></h2><p><code>gulp-webpack-build</code> also is a plugin that streams assets from webpack allowing a more idiomatic gulp way of building with webpack, but it uses <code>webpack.config.js</code> as source for stream instead of referencing entries.</p><p>It has some benefits:</p><ul><li>overrides any properties of config files via <code>webpack.props</code>;</li><li>uses memory file system to prevents write files on disk via <code>webpack.init({useMemoryFs: <span class=literal>true</span>})</code>;</li><li>controls webpack stats output via <code>webpack.format</code>;</li><li>fails your build if <code>webpack</code> returns some errors or warnings via <code>webpack.failAfter</code>;</li><li>just compiles config files via <code>webpack.run</code>;</li><li>works in watching mode via <code>webpack.watch</code>.</li></ul><p>First install with <code>npm install gulp-webpack-build</code> and then use as follows:</p><pre><code><span class=string>'use strict'</span>;
 
 <span class=keyword>var</span> path = require(<span class=string>'path'</span>),
     gulp = require(<span class=string>'gulp'</span>),
@@ -38,10 +38,10 @@ gulp.task(<span class=string>"webpack"</span>, <span class=function><span class=
     CONFIG_FILENAME = webpack.config.CONFIG_FILENAME;
 
 gulp.task(<span class=string>'webpack'</span>, [], <span class=function><span class=keyword>function</span><span class=params>()</span> {</span>
-    <span class=keyword>return</span> gulp.src(path.join(path.join(src, <span class=string>'**'</span>, CONFIG_FILENAME)), { base: path.resolve(src) })
-        .pipe(webpack.configure(webpackConfig))
-        .pipe(webpack.overrides(webpackOptions))
-        .pipe(webpack.compile())
+    <span class=keyword>return</span> gulp.src(path.join(src, <span class=string>'**'</span>, CONFIG_FILENAME), { base: path.resolve(src) })
+        .pipe(webpack.init(webpackConfig))
+        .pipe(webpack.props(webpackOptions))
+        .pipe(webpack.run())
         .pipe(webpack.format({
             version: <span class=literal>false</span>,
             timings: <span class=literal>true</span>
@@ -58,8 +58,8 @@ gulp.task(<span class=string>'watch'</span>, <span class=function><span class=ke
         <span class=keyword>if</span> (event.type === <span class=string>'changed'</span>) {
             gulp.src(event.path, { base: path.resolve(src) })
                 .pipe(webpack.closest(CONFIG_FILENAME))
-                .pipe(webpack.configure(webpackConfig))
-                .pipe(webpack.overrides(webpackOptions))
+                .pipe(webpack.init(webpackConfig))
+                .pipe(webpack.props(webpackOptions))
                 .pipe(webpack.watch(<span class=function><span class=keyword>function</span><span class=params>(err, stats)</span> {</span>
                     gulp.src(<span class=keyword>this</span>.path, { base: <span class=keyword>this</span>.base })
                         .pipe(webpack.proxy(err, stats))
