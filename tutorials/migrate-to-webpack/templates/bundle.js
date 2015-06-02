@@ -82,11 +82,11 @@
 
 	var $, template;
 
-	__webpack_require__(7);
+	__webpack_require__(6);
 
 	$ = __webpack_require__(1);
 
-	template = __webpack_require__(6);
+	template = __webpack_require__(8);
 
 	exports.render = function(model) {
 	  return $("body").html(template({
@@ -123,6 +123,27 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	var dispose = __webpack_require__(9)
+		// The css code:
+		(__webpack_require__(7));
+	// Hot Module Replacement
+	if(false) {
+		module.hot.accept();
+		module.hot.dispose(dispose);
+	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports =
+		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var jade = __webpack_require__(10);
 
 	module.exports = function template(locals) {
@@ -132,27 +153,6 @@
 	var locals_ = (locals || {}),model = locals_.model;
 	buf.push("<h1>Hello World.</h1><p>Your User-Agent is: " + (jade.escape((jade_interp = model) == null ? '' : jade_interp)) + "</p>");;return buf.join("");
 	}
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	var dispose = __webpack_require__(9)
-		// The css code:
-		(__webpack_require__(8));
-	// Hot Module Replacement
-	if(false) {
-		module.hot.accept();
-		module.hot.dispose(dispose);
-	}
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports =
-		"body {\n  background: #eee;\n}\nbody p {\n  border: 1px solid #333;\n  border-radius: 3px;\n}\n";
 
 /***/ },
 /* 9 */
