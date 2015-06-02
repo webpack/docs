@@ -12,7 +12,7 @@ function hasModifier(event) {
 
 function bindIntraLinks() {
 	document.body.addEventListener("click", function(event) {
-		if(event.target.tagName === "A" && !hasModifier(event) && INTRA_LINK.test(event.target.getAttribute("href"))) {
+		if(event.target.tagName === "A" && !hasModifier(event) && (event.which === 1) && INTRA_LINK.test(event.target.getAttribute("href"))) {
 			var href = event.target.getAttribute("href");
 			INTRA_LINK.lastIndex = 0;
 			var wiki = INTRA_LINK.exec(href)[1];
