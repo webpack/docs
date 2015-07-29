@@ -1,6 +1,6 @@
 # Installing webpack
 
-You need to have [node.js](http://nodejs.org) installed.
+You need to have [node.js](https://nodejs.org) installed.
 
 ``` sh
 $ npm install webpack -g

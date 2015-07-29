@@ -1,6 +1,6 @@
 module.exports = function downloadWiki(wiki, callback) {
 	var request = new XMLHttpRequest();
-	request.open("GET", "http://github-wiki.herokuapp.com/webpack/docs/" + wiki, true);
+	request.open("GET", "//github-wiki.herokuapp.com/webpack/docs/" + wiki, true);
 	request.onreadystatechange = function() {
 		if(request.readyState === 4) {
 			if(request.status !== 200) {
