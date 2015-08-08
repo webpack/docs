@@ -14,8 +14,8 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.styl$/,   loader: ExtractTextPlugin.extract("style-loader", "css-loader!stylus-loader") },
-			{ test: /\.css$/,    loader: "style-loader!css-loader" },
+			{ test: /\.styl$/,   loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader?browsers=last 2 versions!stylus-loader") },
+			{ test: /\.css$/,    loader: "style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions" },
 			{ test: /\.woff$/,   loader: "url-loader?prefix=font/&limit=5000&minetype=application/font-woff" },
 			{ test: /\.ttf$/,    loader: "file-loader?prefix=font/" },
 			{ test: /\.eot$/,    loader: "file-loader?prefix=font/" },
