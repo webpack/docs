@@ -86,7 +86,7 @@ function updateDisqus() {
 	disqus.update(currentPage);
 }
 
-var EDIT_LINK = "https://github.com/webpack/docs/wiki/XXX/_edit";
+var EDIT_LINK = "https://github.com/XUEJS/webpack-docs/wiki/XXX/_edit";
 
 function loadPage(wiki, initial) {
 	var cacheEntry = pagesCache.get(wiki);

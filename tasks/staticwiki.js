@@ -112,7 +112,8 @@ module.exports = function(grunt) {
 	}
 
 	function downloadWikiContent(wikiPath, callback) {
-		https.get("https://raw.githubusercontent.com/wiki/webpack/docs/" + wikiPath + ".md", function(res) {
+		https.get("https://raw.githubusercontent.com/wiki/XUEJS/webpack-docs/" + wikiPath + ".md", function(res) {
+		// https.get("https://raw.githubusercontent.com/wiki/webpack/docs/" + wikiPath + ".md", function(res) {
 			grunt.log.writeln("[" + res.statusCode + "] wiki page " + wikiPath);
 			if(res.statusCode !== 200) {
 				res.resume();
