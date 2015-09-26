@@ -2,7 +2,7 @@
 
 中文版: [docs](http://xuejs.github.io/webpack-docs)
 
-The documentation is generated from the contents of this [wiki](https://github.com/webpack/docs/wiki) ([zh-CN](https://github.com/XUEJS/webpack-docs/wiki)). Please make any content edits there.
+The documentation is generated from the contents of this [wiki](https://github.com/webpack/docs/wiki) ([中文](https://github.com/XUEJS/webpack-docs/wiki)). Please make any content edits there.
 
 
 
