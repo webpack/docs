@@ -1,4 +1,11 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugins = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = new ExtractTextPlugins("css/[name].css");
+var webpack = require('webpack');
+var minifyPlugin = new webpack.optimize.MinChunkSizePlugin({
+    compress: {
+        warnings: false
+    }
+});
 module.exports = {
 	entry: {
 		doc: "./app/doc.js",
@@ -23,6 +30,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin("css/[name].css")
+		ExtractTextPlugin,
+		minifyPlugin
 	]
 };

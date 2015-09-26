@@ -1,6 +1,10 @@
 # [documentation](https://webpack.github.io/docs/)
 
-The documentation is generated from the contents of this [wiki](https://github.com/webpack/docs/wiki). Please make any content edits there.
+for Chinese Version£º[docs](http://xuejs.github.io/webpack-docs)
+
+The documentation is generated from the contents of this [wiki for zh-CN](https://github.com/XUEJS/webpack-docs/wiki). Please make any content edits there.
+
+
 
 ## building the documentation
 
