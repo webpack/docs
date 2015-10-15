@@ -5,8 +5,8 @@
     <span class=tag>&lt;<span class=title>body</span>&gt;</span>
         <span class=tag>&lt;<span class=title>script</span> <span class=attribute>type</span>=<span class=value>"text/javascript"</span> <span class=attribute>src</span>=<span class=value>"bundle.js"</span> <span class=attribute>charset</span>=<span class=value>"utf-8"</span>&gt;</span><span class=javascript></span><span class=tag>&lt;/<span class=title>script</span>&gt;</span>
     <span class=tag>&lt;/<span class=title>body</span>&gt;</span>
-<span class=tag>&lt;/<span class=title>html</span>&gt;</span></code></pre></div><p>Then run the following:</p><pre><code>$ webpack ./entry.js bundle.js</code></pre><p>It will compile your file and create a bundle file.</p><p>If successful it displays something like this:</p><pre><code>Version: webpack 1.11.0
-Time: 60ms
+<span class=tag>&lt;/<span class=title>html</span>&gt;</span></code></pre></div><p>Then run the following:</p><pre><code>$ webpack ./entry.js bundle.js</code></pre><p>It will compile your file and create a bundle file.</p><p>If successful it displays something like this:</p><pre><code>Version: webpack 1.12.2
+Time: 43ms
     Asset     Size  Chunks             Chunk Names
 bundle.js  1.42 kB       0  [emitted]  main
 chunk    {0} bundle.js (main) 28 bytes [rendered]
@@ -23,8 +23,8 @@ chunk    {0} bundle.js (main) 28 bytes [rendered]
             { <span class=attribute>test</span>: <span class=regexp>/\.css$/</span>, <span class=attribute>loader</span>: <span class=string>"style!css"</span> }
         ]
     }
-};</code></pre></div><p>Now we can just run:</p><pre><code>webpack</code></pre><p>to compile:</p><pre><code>Version: webpack 1.11.0
-Time: 478ms
+};</code></pre></div><p>Now we can just run:</p><pre><code>webpack</code></pre><p>to compile:</p><pre><code>Version: webpack 1.12.2
+Time: 354ms
     Asset     Size  Chunks             Chunk Names
 bundle.js  10.7 kB       0  [emitted]  main
 chunk    {0} bundle.js (main) 8.86 kB [rendered]
