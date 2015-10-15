@@ -44,7 +44,7 @@ function highlightIntraLinks() {
 
 var contentElement = document.getElementById("wiki");
 var titleElement = document.getElementById("wikititle");
-var editElement = document.getElementById("wikieditlink");
+var editElements = document.getElementsByClassName("wikieditlink");
 
 var pagesCache = LRU({
 	max: 10,
@@ -88,12 +88,18 @@ function updateDisqus() {
 
 var EDIT_LINK = "https://github.com/webpack/docs/wiki/XXX/_edit";
 
+function setPage(wiki, content) {
+	Array.prototpype.forEach.call(editElements, function(editElement) {
+		editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
+	});
+	titleElement.innerHTML = linkToTitle(wiki);
+	contentElement.innerHTML = content;
+}
+
 function loadPage(wiki, initial) {
 	var cacheEntry = pagesCache.get(wiki);
 	if(cacheEntry) {
-		editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
-		titleElement.innerHTML = linkToTitle(wiki);
-		contentElement.innerHTML = cacheEntry;
+		setPage(wiki, cacheEntry);
 		if(!initial) {
 			if(!window.location.hash) window.scrollTo(0, 0);
 			reportAnalytics();
@@ -120,9 +126,7 @@ function loadPage(wiki, initial) {
 		function next(result) {
 			pagesCache.set(wiki, result);
 			if(document.body.classList) document.body.classList.remove("loading");
-			editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
-			titleElement.innerHTML = linkToTitle(wiki);
-			contentElement.innerHTML = result;
+			setPage(wiki, result);
 			if(!initial) {
 				if(!window.location.hash) window.scrollTo(0, 0);
 				reportAnalytics();
