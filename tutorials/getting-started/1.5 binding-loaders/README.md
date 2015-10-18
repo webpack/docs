@@ -12,6 +12,8 @@ Run the compilation with:
 webpack ./entry.js bundle.js --module-bind 'css=style!css'
 ```
 
+> Some environments may require double quotes: --module-bind "css=style!css"
+
 You should see the same result:
 
 $$$ index.html
