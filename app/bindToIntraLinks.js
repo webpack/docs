@@ -5,7 +5,6 @@ var LRU = require("lru-cache");
 
 var INTRA_LINK = /^([a-z0-9\-\.]+)\.html$/i;
 
-
 function hasModifier(event) {
 	return event.metaKey || event.shiftKey || event.altKey || event.ctrlKey;
 }
@@ -89,7 +88,7 @@ function updateDisqus() {
 var EDIT_LINK = "https://github.com/webpack/docs/wiki/XXX/_edit";
 
 function setPage(wiki, content) {
-	Array.prototpype.forEach.call(editElements, function(editElement) {
+	Array.prototype.forEach.call(editElements, function(editElement) {
 		editElement.setAttribute("href", EDIT_LINK.replace(/XXX/g, wiki));
 	});
 	titleElement.innerHTML = linkToTitle(wiki);
