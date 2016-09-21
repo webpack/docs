@@ -7,10 +7,12 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" type="image/png" href="/assets/favicon.png" />
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
 		<link rel="stylesheet" href="css/doc.css" />
 		<title>{{title}}</title>
 	</head>
 	<body>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" charset="utf-8" async></script>
 		<script src="js/doc.js" charset="utf-8" async></script>
 		<div class="container">
 			<div class="row">
@@ -19,6 +21,7 @@
 					{{include logo}}
 
 					<div class="sidebar">
+						<input id="docsearch" type="text" />
 						<ul><li><a href=".">Home</a></li></ul>
 						{{wiki contents}}
 					</div>
