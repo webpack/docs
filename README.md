@@ -1,7 +1,7 @@
 # [documentation](https://webpack.github.io/docs/) 
 
 
-# NEW DOCS HAVE BEEN MOVED TO [webpack/webpack.io](https://github.com/webpack/webpack.io) 
+# NEW DOCS HAVE BEEN MOVED TO [webpack/webpack.js.org](https://github.com/webpack/webpack.js.org) 
 # ATTENTION: If you are planning on updating the content here you must update the [WIKI](https://github.com/webpack/docs/wiki). 
 # If you see an issue, or want to make a change, please submit an issue and pull request on the new page. We are working to migrate this content over to the new repo. 
 
