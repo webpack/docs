@@ -1,6 +1,6 @@
 # The first loader
 
-We want to add a css file to our application.
+We want to add a CSS file to our application.
 
 webpack can only handle JavaScript natively, so we need the `css-loader` to process CSS files. We also need the `style-loader` to apply the styles in the CSS file.
 
