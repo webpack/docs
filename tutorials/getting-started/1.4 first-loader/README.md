@@ -10,7 +10,7 @@ Let's use them:
 
 $$$ files
 
-Recompile and update your browser to see your application with yellow background.
+Recompile and reload your browser window to see your application with yellow background.
 
 $$$ index.html
 
